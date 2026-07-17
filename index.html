@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Adventure is a classroom-ready prompt engineering activity for Grades 6–8." />
+  <title>AI Adventure – Prompt Engineering Interactive Classroom Activity</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loadingScreen" class="loading-screen" aria-live="polite">
+    <img src="assets/logo.svg" alt="AI Adventure logo" class="loading-logo" />
+    <p>Preparing your AI training environment</p>
+  </div>
+
+  <header class="app-header" aria-label="Application header">
+    <a class="brand" href="#landing" aria-label="AI Adventure home">
+      <img src="assets/logo.svg" alt="" aria-hidden="true" />
+      <span>AI Adventure</span>
+    </a>
+    <nav class="header-actions" aria-label="Activity controls">
+      <button id="teacherToggle" class="ghost-button" type="button" aria-expanded="false">Teacher Panel</button>
+      <button id="soundToggle" class="icon-button" type="button" aria-pressed="false" aria-label="Toggle sound">Sound Off</button>
+      <button id="themeToggle" class="icon-button" type="button" aria-pressed="false">Dark Mode</button>
+    </nav>
+  </header>
+
+  <aside id="teacherDashboard" class="teacher-dashboard" aria-labelledby="teacherTitle" hidden>
+    <div class="panel-header">
+      <h2 id="teacherTitle">Teacher Dashboard</h2>
+      <button id="closeTeacher" class="ghost-button" type="button">Close</button>
+    </div>
+    <dl class="dashboard-grid">
+      <div><dt>Student score</dt><dd id="dashScore">0%</dd></div>
+      <div><dt>Time taken</dt><dd id="dashTime">0:00</dd></div>
+      <div><dt>Average prompt quality</dt><dd id="dashAverage">0/10</dd></div>
+    </dl>
+    <h3>Challenge performance</h3>
+    <div id="dashChallenges" class="dashboard-list"></div>
+  </aside>
+
+  <main id="app" class="app-shell">
+    <section id="landing" class="screen active" aria-labelledby="heroTitle">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Grades 6–8 classroom activity</p>
+          <h1 id="heroTitle">AI Adventure</h1>
+          <p class="subtitle">Prompt Engineering Interactive Classroom Activity</p>
+          <p class="description">A classroom experience where students learn how to communicate effectively with AI through interactive challenges.</p>
+          <div class="meta-row" aria-label="Activity details">
+            <div><span>Grade</span><strong>6–8</strong></div>
+            <div><span>Duration</span><strong>60 Minutes</strong></div>
+          </div>
+          <button id="startButton" class="primary-button" type="button">Start Activity</button>
+        </div>
+        <div class="hero-card" aria-labelledby="objectivesTitle">
+          <h2 id="objectivesTitle">Learning Objectives</h2>
+          <ul class="check-list">
+            <li>Understand prompts</li>
+            <li>Improve prompts</li>
+            <li>Think critically</li>
+            <li>Use AI responsibly</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="intro" class="screen" aria-labelledby="introTitle">
+      <article class="content-card narrow">
+        <p class="eyebrow">Mission briefing</p>
+        <h1 id="introTitle">Enter the AI training environment</h1>
+        <p id="typingStory" class="typing-text" aria-live="polite"></p>
+        <div class="instruction-box">
+          <h2>How it works</h2>
+          <ol>
+            <li>Read each prompt challenge carefully.</li>
+            <li>Write a stronger prompt using context, constraints, and a clear output format.</li>
+            <li>Review your score card and feedback before moving forward.</li>
+          </ol>
+        </div>
+        <label class="field-label" for="studentName">Student name for certificate</label>
+        <input id="studentName" class="text-input" type="text" autocomplete="name" placeholder="Enter your name" />
+        <button id="beginButton" class="primary-button" type="button">Begin Mission</button>
+      </article>
+    </section>
+
+    <section id="challengeScreen" class="screen" aria-labelledby="challengeTitle">
+      <div class="progress-wrap" aria-label="Activity progress">
+        <div class="progress-text"><span id="challengeCounter">Challenge 1 of 5</span><span id="progressPercent">20%</span></div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </div>
+      <article class="content-card challenge-card">
+        <p id="challengeType" class="eyebrow">Prompt improvement</p>
+        <h1 id="challengeTitle"></h1>
+        <p id="challengeDescription" class="challenge-description"></p>
+        <blockquote id="originalPrompt" class="original-prompt"></blockquote>
+        <label class="field-label" for="promptInput">Your improved prompt</label>
+        <textarea id="promptInput" class="prompt-input" rows="7" placeholder="Write your prompt here..."></textarea>
+        <div class="button-row">
+          <button id="evaluateButton" class="primary-button" type="button">Evaluate Prompt</button>
+          <button id="nextButton" class="secondary-button" type="button" disabled>Next Challenge</button>
+        </div>
+        <section id="scoreCard" class="score-card" aria-live="polite" hidden></section>
+      </article>
+    </section>
+
+    <section id="completion" class="screen" aria-labelledby="completionTitle">
+      <article class="content-card narrow">
+        <p class="eyebrow">Mission complete</p>
+        <h1 id="completionTitle">Prompt engineer in training</h1>
+        <div class="final-score"><span id="finalScore">0%</span><small>Final score</small></div>
+        <div class="reflection-grid">
+          <section><h2>Strengths</h2><ul id="strengthsList"></ul></section>
+          <section><h2>Areas to improve</h2><ul id="improvementsList"></ul></section>
+        </div>
+        <section><h2>Learning outcomes</h2><ul class="check-list"><li>Built clearer prompts with context.</li><li>Used constraints and formats to guide AI output.</li><li>Practiced responsible and critical AI use.</li></ul></section>
+        <div class="button-row"><button id="certificateButton" class="primary-button" type="button">Create Certificate</button><button id="restartButton" class="secondary-button" type="button">Restart Activity</button></div>
+      </article>
+    </section>
+
+    <section id="certificate" class="screen" aria-labelledby="certificateTitle">
+      <article class="certificate" role="document">
+        <img src="assets/certificate-bg.svg" alt="" aria-hidden="true" class="certificate-bg" />
+        <div class="certificate-content">
+          <p class="eyebrow">Certificate of Completion</p>
+          <h1 id="certificateTitle">Certificate of Completion</h1>
+          <p>This certifies that</p>
+          <h2 id="certificateName">Student</h2>
+          <p>completed</p>
+          <h3>Prompt Engineering Interactive Adventure</h3>
+          <div class="certificate-footer"><span id="certificateDate"></span><span>Instructor: Bambinos.live</span></div>
+        </div>
+      </article>
+      <div class="button-row center no-print"><button id="printButton" class="primary-button" type="button">Print Certificate</button><button id="backCompletion" class="secondary-button" type="button">Back to Results</button></div>
+    </section>
+  </main>
+
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
