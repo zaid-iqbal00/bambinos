@@ -1,3 +1,6 @@
+<img width="805" height="778" alt="image" src="https://github.com/user-attachments/assets/d34ddead-6488-4bde-b94f-81de17928c19" />
+
+
 # AI Adventure - Prompt Engineering Interactive Classroom Activity
 
 AI Adventure is a polished, classroom-ready educational web application for Grades 6-8. It teaches prompt engineering through a sequence of interactive text-adventure challenges that help students learn how to write clearer, more specific, and more effective prompts for AI.
@@ -47,15 +50,6 @@ AI Adventure is a polished, classroom-ready educational web application for Grad
 
 No server is required because the project uses only HTML, CSS, and vanilla JavaScript.
 
-## How to Deploy on Netlify
-
-1. Push the folder to GitHub.
-2. Sign in to Netlify.
-3. Choose **Add new site** and connect the GitHub repository.
-4. Set the publish directory to the repository root.
-5. Deploy the site.
-
-Because the app is fully static, Netlify can serve it without additional configuration.
 
 ## Notes
 
