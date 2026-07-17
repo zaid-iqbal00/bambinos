@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Adventure - Prompt Engineering Interactive Classroom Activity for Grades 6-8." />
+  <meta name="theme-color" content="#FFFFFF" />
+  <title>AI Adventure - Prompt Engineering Interactive Classroom Activity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background-decor" aria-hidden="true">
+    <span class="background-decor__blob background-decor__blob--one"></span>
+    <span class="background-decor__blob background-decor__blob--two"></span>
+    <span class="background-decor__grid"></span>
+  </div>
+
+  <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-busy="true">
+    <div class="loading-screen__card">
+      <img src="assets/logo.svg" alt="AI Adventure logo" class="loading-screen__logo" />
+      <p class="eyebrow">Bambinos.live classroom activity</p>
+      <h1>Preparing your AI training room</h1>
+      <div class="loading-screen__bar" aria-hidden="true">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-shell" id="appShell">
+    <header class="topbar" aria-label="Application header">
+      <a class="brand" href="#landingScreen" aria-label="AI Adventure home">
+        <img src="assets/logo.svg" alt="" class="brand__mark" />
+        <span class="brand__text">
+          <strong>AI Adventure</strong>
+          <small>Prompt Engineering Classroom Activity</small>
+        </span>
+      </a>
+
+      <div class="topbar__actions" aria-label="Display controls">
+        <button class="icon-button" id="themeToggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">Dark mode</button>
+        <button class="icon-button" id="soundToggle" type="button" aria-pressed="false" aria-label="Toggle sound">Sound off</button>
+        <button class="icon-button" id="restartButton" type="button" aria-label="Restart activity">Restart</button>
+        <button class="icon-button icon-button--subtle" id="teacherToggle" type="button" aria-expanded="false" aria-controls="teacherPanel" aria-label="Open teacher dashboard">Teacher dashboard</button>
+      </div>
+    </header>
+
+    <main id="mainContent" class="main-content">
+      <section class="screen screen--landing is-active" id="landingScreen" aria-labelledby="landingTitle">
+        <div class="hero">
+          <div class="hero__copy">
+            <p class="eyebrow">Grades 6-8 • 60 minutes</p>
+            <h1 id="landingTitle">AI Adventure</h1>
+            <p class="hero__subtitle">Prompt Engineering Interactive Classroom Activity</p>
+            <p class="hero__description">A classroom experience where students learn how to communicate effectively with AI through interactive challenges.</p>
+
+            <div class="feature-grid" aria-label="Activity summary">
+              <article class="info-card">
+                <span class="info-card__label">Grade</span>
+                <strong>6-8</strong>
+              </article>
+              <article class="info-card">
+                <span class="info-card__label">Duration</span>
+                <strong>60 Minutes</strong>
+              </article>
+              <article class="info-card info-card--wide">
+                <span class="info-card__label">Learning Objectives</span>
+                <ul class="objectives-list">
+                  <li>Understand prompts</li>
+                  <li>Improve prompts</li>
+                  <li>Think critically</li>
+                  <li>Use AI responsibly</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="hero__actions">
+              <button class="primary-button" id="startButton" type="button">Start Activity</button>
+              <p class="microcopy">No login required. Works offline in the browser.</p>
+            </div>
+          </div>
+
+          <aside class="hero__panel hero__panel--showcase" aria-label="Student setup panel">
+            <div class="panel-card panel-card--accent hero__visual-card">
+              <div class="hero__visual-badge">Professor Nova</div>
+              <img class="panel-card__image panel-card__image--hero" src="assets/illustrations/hero-classroom.svg" alt="Friendly classroom illustration with floating AI icons" />
+            </div>
+
+            <div class="panel-card panel-card--soft">
+              <div class="hero__guide-preview">
+                <img src="assets/professor-nova.svg" alt="Professor Nova guide character" class="guide-avatar" />
+                <div>
+                  <p class="eyebrow">Your guide</p>
+                  <strong>Professor Nova</strong>
+                  <p class="helper-text">Ready to help explorers craft better prompts.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-card panel-card--accent">
+              <p class="eyebrow">Classroom ready</p>
+              <h2>Prepare your mission</h2>
+              <p>Enter a student name so the certificate can be personalized at the end.</p>
+              <label class="field-label" for="studentNameLanding">Student name</label>
+              <input class="text-input" id="studentNameLanding" name="studentNameLanding" type="text" maxlength="40" placeholder="Student" autocomplete="name" />
+              <p class="helper-text">Optional during play, required for the certificate.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen screen--intro" id="introScreen" aria-labelledby="introTitle" hidden>
+        <div class="story-panel">
+          <p class="eyebrow">Mission start</p>
+          <h2 id="introTitle">Enter the virtual AI training environment</h2>
+          <p class="story-panel__copy" id="introStory"></p>
+
+          <div class="guide-callout" aria-live="polite">
+            <img src="assets/professor-nova.svg" alt="Professor Nova" class="guide-avatar guide-avatar--small" />
+            <div>
+              <p class="eyebrow">Professor Nova</p>
+              <p class="guide-callout__text" id="guideMessage">Welcome Explorer! Let’s get your mission started.</p>
+            </div>
+          </div>
+
+          <div class="instruction-card">
+            <h3>How this activity works</h3>
+            <ol class="steps-list">
+              <li>Read the mission prompt.</li>
+              <li>Write a stronger version of the prompt.</li>
+              <li>Review the score card and feedback.</li>
+              <li>Move through each challenge to complete the mission.</li>
+            </ol>
+          </div>
+
+          <div class="story-panel__actions">
+            <button class="primary-button" id="beginButton" type="button">Begin</button>
+            <button class="secondary-button" id="backToLandingButton" type="button">Back</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen screen--challenge" id="challengeScreen" aria-labelledby="challengeTitle" hidden>
+        <div class="progress-shell" aria-label="Activity progress">
+          <div class="progress-shell__meta">
+            <span id="challengeCounter">Mission 1 of 5</span>
+            <span id="progressPercent">20%</span>
+          </div>
+          <div class="mission-map">
+            <div class="mission-map__track" aria-hidden="true">
+              <span id="progressFill"></span>
+            </div>
+            <ol class="mission-map__steps" aria-label="Mission journey">
+              <li class="mission-node" data-step="0"><span>Mission 1</span></li>
+              <li class="mission-node" data-step="1"><span>Mission 2</span></li>
+              <li class="mission-node" data-step="2"><span>Mission 3</span></li>
+              <li class="mission-node" data-step="3"><span>Mission 4</span></li>
+              <li class="mission-node" data-step="4"><span>Final Mission</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="challenge-layout">
+          <article class="challenge-card challenge-card--prompt" aria-labelledby="challengeTitle">
+            <div class="challenge-card__header">
+              <p class="eyebrow" id="challengeEyebrow">Mission 1</p>
+              <h2 id="challengeTitle"></h2>
+              <p class="challenge-card__subtitle" id="challengeSubtitle"></p>
+            </div>
+
+            <div class="mission-hero">
+              <img src="assets/professor-nova.svg" alt="Professor Nova" class="guide-avatar guide-avatar--medium" />
+              <div>
+                <p class="eyebrow">Professor Nova</p>
+                <p id="missionGuide" class="mission-hero__copy">Welcome Explorer! Your next mission is ready.</p>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              <span class="prompt-block__label" id="promptLabel">Your mission prompt</span>
+              <p class="prompt-block__text" id="promptText"></p>
+            </div>
+
+            <div class="prompt-block prompt-block--reference" id="referenceBlock">
+              <span class="prompt-block__label">Focus</span>
+              <p class="prompt-block__text" id="promptHint"></p>
+            </div>
+
+            <form class="prompt-form" id="promptForm">
+              <label class="field-label" for="promptInput">Your prompt</label>
+              <textarea class="text-area" id="promptInput" name="promptInput" rows="8" maxlength="600" placeholder="Type your improved prompt here..."></textarea>
+              <div class="prompt-form__footer">
+                <p class="helper-text" id="promptHelper">Be specific, clear, and useful.</p>
+                <button class="primary-button" type="submit" id="submitButton">Check XP</button>
+              </div>
+            </form>
+          </article>
+
+          <aside class="challenge-card challenge-card--results" aria-live="polite">
+            <div class="results-panel" id="resultsPanel">
+              <div class="results-panel__empty" id="resultsEmpty">
+                <p class="eyebrow">XP card</p>
+                <h3>Write a prompt to unlock feedback</h3>
+                <p>The scoring system checks clarity, context, specificity, and creativity.</p>
+              </div>
+
+              <div class="results-panel__content" id="resultsContent" hidden>
+                <div class="xp-ring" aria-label="Prompt XP">
+                  <span id="xpValue">+0 XP</span>
+                  <small id="rankLabel">AI Explorer</small>
+                </div>
+
+                <div class="score-ring" aria-label="Overall score">
+                  <span id="overallScore">0</span>
+                  <small>Prompt Score</small>
+                </div>
+
+                <div class="badge-strip" id="badgeStrip" aria-label="Earned badges"></div>
+                <div class="metric-list" id="metricList"></div>
+
+                <div class="feedback-card feedback-card--colorful">
+                  <h3>Feedback</h3>
+                  <ul id="feedbackList" class="feedback-list"></ul>
+                </div>
+
+                <div class="results-panel__footer">
+                  <button class="secondary-button" id="retryButton" type="button">Try again</button>
+                  <button class="primary-button" id="nextButton" type="button" disabled>Next challenge</button>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="screen screen--completion" id="completionScreen" aria-labelledby="completionTitle" hidden>
+        <div class="completion-layout">
+          <article class="completion-card">
+            <p class="eyebrow">Mission complete</p>
+            <h2 id="completionTitle">You completed AI Adventure</h2>
+            <p class="completion-card__copy">Your class has practiced building better prompts by adding context, constraints, structure, and purpose.</p>
+
+            <div class="completion-hero">
+              <img src="assets/professor-nova.svg" alt="Professor Nova" class="guide-avatar guide-avatar--medium" />
+              <div>
+                <p class="eyebrow">Professor Nova</p>
+                <p id="completionGuide" class="mission-hero__copy">Great job! You earned your AI Adventure Graduate certificate.</p>
+              </div>
+            </div>
+
+            <div class="completion-summary">
+              <div class="summary-stat">
+                <span class="summary-stat__label">XP earned</span>
+                <strong id="finalScore">0 XP</strong>
+              </div>
+              <div class="summary-stat">
+                <span class="summary-stat__label">Time taken</span>
+                <strong id="timeTaken">00:00</strong>
+              </div>
+              <div class="summary-stat">
+                <span class="summary-stat__label">Average quality</span>
+                <strong id="averageQuality">0/10</strong>
+              </div>
+              <div class="summary-stat">
+                <span class="summary-stat__label">Badges unlocked</span>
+                <strong id="badgeCount">0</strong>
+              </div>
+            </div>
+
+            <div class="badge-strip badge-strip--large" id="completionBadgeStrip" aria-label="Unlocked badges"></div>
+
+            <div class="insight-grid">
+              <div class="insight-card">
+                <h3>Strengths</h3>
+                <ul id="strengthList"></ul>
+              </div>
+              <div class="insight-card">
+                <h3>Areas to improve</h3>
+                <ul id="improvementList"></ul>
+              </div>
+              <div class="insight-card">
+                <h3>Learning outcomes</h3>
+                <ul id="learningList"></ul>
+              </div>
+            </div>
+
+            <div class="completion-actions">
+              <button class="primary-button" id="certificateButton" type="button">Print Certificate</button>
+              <button class="secondary-button" id="restartFromCompletionButton" type="button">Replay mission</button>
+            </div>
+          </article>
+
+          <aside class="teacher-note">
+            <p class="eyebrow">Learning celebration</p>
+            <h3>Ready for a classroom discussion</h3>
+            <p>Compare the students’ prompts and ask why certain versions gave the AI clearer instructions.</p>
+            <img src="assets/illustrations/problem.svg" alt="Minimal illustration showing a classroom problem solving prompt" />
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <aside class="teacher-panel" id="teacherPanel" aria-label="Teacher dashboard" hidden>
+    <div class="teacher-panel__header">
+      <div>
+        <p class="eyebrow">Hidden dashboard</p>
+        <h2>Teacher dashboard</h2>
+      </div>
+      <button class="icon-button" id="closeTeacherPanel" type="button" aria-label="Close teacher dashboard">Close</button>
+    </div>
+
+    <div class="teacher-grid">
+      <article class="teacher-card">
+        <span class="teacher-card__label">Student score</span>
+        <strong id="teacherStudentScore">0</strong>
+      </article>
+      <article class="teacher-card">
+        <span class="teacher-card__label">Time taken</span>
+        <strong id="teacherTimeTaken">00:00</strong>
+      </article>
+      <article class="teacher-card teacher-card--wide">
+        <span class="teacher-card__label">Challenge performance</span>
+        <div id="teacherPerformance" class="teacher-performance"></div>
+      </article>
+      <article class="teacher-card">
+        <span class="teacher-card__label">Average prompt quality</span>
+        <strong id="teacherAverageQuality">0/10</strong>
+      </article>
+    </div>
+  </aside>
+
+  <section class="certificate-modal" id="certificateModal" aria-hidden="true" hidden>
+    <div class="certificate-modal__backdrop" data-close-certificate></div>
+    <article class="certificate-card" aria-labelledby="certificateTitle">
+      <div class="certificate-card__frame">
+        <p class="eyebrow">Certificate of Completion</p>
+        <h2 id="certificateTitle">AI Adventure Graduate</h2>
+        <p class="certificate-card__subtitle">Prompt Engineering Explorer</p>
+        <div class="certificate-card__body">
+          <p class="certificate-card__line">Completion Seal</p>
+          <p class="certificate-card__line">This certificate is proudly awarded to</p>
+          <h3 id="certificateName">Student</h3>
+          <p class="certificate-card__detail" id="certificateDate"></p>
+          <p class="certificate-card__detail">Instructor: Bambinos.live</p>
+        </div>
+      </div>
+      <div class="certificate-card__actions">
+        <button class="primary-button" id="printCertificateButton" type="button">Print certificate</button>
+        <button class="secondary-button" id="closeCertificateButton" type="button">Close</button>
+      </div>
+    </article>
+  </section>
+
+  <aside class="guide-float" id="guideFloat" aria-live="polite" aria-label="Professor Nova guide">
+    <button class="guide-float__close" id="guideFloatClose" type="button" aria-label="Close Professor Nova guide">×</button>
+    <img src="assets/professor-nova.svg" alt="Professor Nova" class="guide-avatar" />
+    <div class="guide-float__bubble">
+      <p class="eyebrow">Professor Nova</p>
+      <p id="guideBubbleText">Welcome Explorer! Let’s begin the adventure.</p>
+    </div>
+  </aside>
+
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
